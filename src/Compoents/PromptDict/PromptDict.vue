@@ -51,14 +51,17 @@
         </div>
 
         <div class="active-dir" v-if="activeDir">
-            <div class="sub-dir" v-for="subDir in activeSubDirs">
-                <div class="name" v-if="subDir.name != activeDir.name">{{ subDir.name }}</div>
+            <details class="sub-dir" v-for="subDir in activeSubDirs" open :key="subDir.name">
+                <summary class="name" v-show="subDir.name != activeDir.name" >
+                    <span class="title">{{ subDir.name }}</span>
+                    <span class="len">{{ subDir.words.length }}</span>
+                </summary>
                 <div class="list">
                     <div class="item" v-for="word in subDir.words">
                         <PromptItem :item="word" @click="doApplyWord(word)" class="dict-word" />
                     </div>
                 </div>
-            </div>
+            </details>
         </div>
     </div>
 </template>
@@ -106,6 +109,30 @@
             font-weight: bold;
             color: #7e7e7e;
             text-shadow: 0 1px rgba(255, 255, 255, 0.4901960784);
+            cursor: pointer;
+            user-select: none;
+            > .title {
+                padding-left: 6px;
+            }
+            > .len {
+                background: #e6e6e6;
+                color: #7e7e7eb0;
+                border-radius: 4px;
+                padding: 1px 8px;
+                margin-left: 4px;
+                text-align: center;
+                display: inline-flex;
+                place-content: center;
+                font-size: 12px;
+                font-weight: normal;
+                font-family: "JetBrains Mono";
+
+            }
+
+            &::marker {
+                color: rgba(126, 126, 126, 0.5);
+
+            }
         }
         .list {
             display: flex;
