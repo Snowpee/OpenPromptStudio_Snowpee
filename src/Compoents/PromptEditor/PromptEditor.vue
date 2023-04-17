@@ -1,175 +1,174 @@
 <template>
-    <div class="PromptEditor">
-        <div class="workspace">
-            <PromptWork
-                v-for="work in promptEditor.works"
-                :prompt-work="work"
-                :key="work.id"
-                @delete="doDeletePromptWork"
-            />
-        </div>
-
-        <div class="operate-tool" ref="operate-tool">
-            <button @click="doAddWorkspace"><Icon icon="radix-icons:card-stack-plus" /> 添加工作区</button>
-
-            <div class="pngout-option checkbox">
-                <input id="ope-expf" type="checkbox" v-model="promptEditor.data.enablePngExportFixed" />
-                <label for="ope-expf"> 导出 PNG 时固定尺寸</label>
-            </div>
-            <div class="pngout-option checkbox">
-                <input id="ope-expf2" type="checkbox" v-model="promptEditor.data.enablePngExportCopy" />
-                <label for="ope-expf2"> 导出 PNG 到剪贴板</label>
+    <div class="container">
+        <div class="PromptEditor">
+            <div class="workspace">
+                <PromptWork
+                    v-for="work in promptEditor.works"
+                    :prompt-work="work"
+                    :key="work.id"
+                    @delete="doDeletePromptWork"
+                />
             </div>
 
-            <div
-                class="server-select"
-                v-tooltip="
-                    `调用翻译接口会有不小的成本开销，我们做了适当限制\n当同时使用用户过多时会不稳定，请见谅\n想要更好的翻译体验可以在本项目 Github 页获得本地部署的方法`
-                "
-            >
-                <Icon icon="ic:baseline-g-translate" />
-                <div class="lable">
-                    {{ t("翻译服务：") }}
+            <div class="operate-tool field is-horizontal" ref="operate-tool">
+                <div class="field-body level">
+                    <div class="field level-left">
+                        <div class="control">
+                            <button @click="doAddWorkspace" class="button">
+                                <span class="icon">
+                                    <Icon icon="radix-icons:card-stack-plus" />
+                                </span>
+                                <span>添加工作区</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="level-right">
+                        <div class="field imgOption">
+                            <div class="control">
+                                <div class="pngout-option checkbox">
+                                    <input id="ope-expf" type="checkbox" v-model="promptEditor.data.enablePngExportFixed" />
+                                    <label for="ope-expf"> 导出 PNG 时固定尺寸</label>
+                                </div>
+                                <div class="pngout-option checkbox">
+                                    <input id="ope-expf2" type="checkbox" v-model="promptEditor.data.enablePngExportCopy" />
+                                    <label for="ope-expf2"> 导出 PNG 到剪贴板</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <div
+                                    class="server-select"
+                                    v-tooltip="
+                                        `调用翻译接口会有不小的成本开销，我们做了适当限制\n当同时使用用户过多时会不稳定，请见谅\n想要更好的翻译体验可以在本项目 Github 页获得本地部署的方法`
+                                    "
+                                >
+                                    <div class="field has-addons">
+                                        <div class="control">
+                                            <a class="button is-static">
+                                                <span class="icon">
+                                                    <Icon icon="ic:baseline-g-translate" />
+                                                </span>
+                                                <span>{{ t("翻译服务") }}</span>
+                                            </a>
+                                        </div>
+                                        <div class="control">
+                                            <div class="select">
+                                                <select v-model="promptEditor.data.server">
+                                                    <option value="http://localhost:19212/prompt-studio">本地翻译接口</option>
+                                                    <option value="https://indexfs.moonvy.com:19213/prompt-studio">腾讯翻译</option>
+                                                    <option value="https://indexfs.moonvy.com:19213/prompt-studio2">腾讯翻译 2</option>
+                                                    <option value="https://indexfs.moonvy.com:19213/prompt-studio/ai" disabled>
+                                                        OpenAI GPT-3.5 (WIP)
+                                                    </option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <select v-model="promptEditor.data.server">
-                    <option value="http://localhost:19212/prompt-studio">本地翻译接口</option>
-                    <option value="https://indexfs.moonvy.com:19213/prompt-studio">腾讯翻译</option>
-                    <option value="https://indexfs.moonvy.com:19213/prompt-studio2">腾讯翻译 2</option>
-                    <option value="https://indexfs.moonvy.com:19213/prompt-studio/ai" disabled>
-                        OpenAI GPT-3.5 (WIP)
-                    </option>
-                </select>
             </div>
-        </div>
 
-        <div v-if="false" class="debug PromptWork">
-            <div class="PromptList">
-                普通：
-                <div class="list">
-                    <div class="PromptItem">
-                        <div class="displayName name">
-                            <div class="lv">2</div>
-                            Apple
+            <div v-if="false" class="debug PromptWork">
+                <div class="PromptList">
+                    普通：
+                    <div class="list">
+                        <div class="PromptItem">
+                            <div class="displayName name">
+                                <div class="lv">2</div>
+                                Apple
+                            </div>
+                        </div>
+                        <div class="PromptItem">
+                            <div class="displayName name">
+                                <div class="lv">1.2</div>
+                                List Name
+                            </div>
+                            <div class="descName name">模型版本 4</div>
+                        </div>
+                        <div class="PromptItem">
+                            <div class="displayName name">--style 4a</div>
+                            <div class="descName name">样式 4a</div>
                         </div>
                     </div>
-                    <div class="PromptItem">
-                        <div class="displayName name">
-                            <div class="lv">1.2</div>
-                            List Name
+                </div>
+                <div class="PromptList">
+                    风格：
+                    <div class="list">
+                        <div class="PromptItem subType-style">
+                            <div class="displayName name">3D</div>
                         </div>
-                        <div class="descName name">模型版本 4</div>
-                    </div>
-                    <div class="PromptItem">
-                        <div class="displayName name">--style 4a</div>
-                        <div class="descName name">样式 4a</div>
-                    </div>
-                </div>
-            </div>
-            <div class="PromptList">
-                风格：
-                <div class="list">
-                    <div class="PromptItem subType-style">
-                        <div class="displayName name">3D</div>
-                    </div>
-                    <div class="PromptItem subType-style">
-                        <div class="displayName name">Oil</div>
-                        <div class="descName name">油画风格</div>
-                    </div>
-                    <div class="PromptItem subType-style">
-                        <div class="displayName name">
-                            <div class="lv">2.5</div>
-                            Oil
+                        <div class="PromptItem subType-style">
+                            <div class="displayName name">Oil</div>
+                            <div class="descName name">油画风格</div>
                         </div>
-                        <div class="descName name">油画风格</div>
-                    </div>
-                    <div class="PromptItem subType-style">
-                        <div class="displayName name">Bubble Mart</div>
-                        <div class="descName name">泡泡玛特模型</div>
-                    </div>
-                </div>
-            </div>
-            <div class="PromptList">
-                质量：
-                <div class="list">
-                    <div class="PromptItem subType-quality">
-                        <div class="displayName name">4K</div>
-                    </div>
-                    <div class="PromptItem subType-quality">
-                        <div class="displayName name">
-                            <div class="lv">2</div>
-                            high quality
+                        <div class="PromptItem subType-style">
+                            <div class="displayName name">
+                                <div class="lv">2.5</div>
+                                Oil
+                            </div>
+                            <div class="descName name">油画风格</div>
                         </div>
-                        <div class="descName name">高质量</div>
+                        <div class="PromptItem subType-style">
+                            <div class="displayName name">Bubble Mart</div>
+                            <div class="descName name">泡泡玛特模型</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="PromptList">
-                命令：
-                <div class="list">
-                    <div class="PromptItem subType-command">
-                        <div class="displayName name">--only</div>
-                    </div>
-                    <div class="PromptItem subType-command">
-                        <div class="displayName name">--v 4</div>
-                        <div class="descName name">模型版本 4</div>
-                    </div>
-                    <div class="PromptItem subType-command">
-                        <div class="displayName name">--style 4a</div>
-                        <div class="descName name">样式 4a</div>
+                <div class="PromptList">
+                    质量：
+                    <div class="list">
+                        <div class="PromptItem subType-quality">
+                            <div class="displayName name">4K</div>
+                        </div>
+                        <div class="PromptItem subType-quality">
+                            <div class="displayName name">
+                                <div class="lv">2</div>
+                                high quality
+                            </div>
+                            <div class="descName name">高质量</div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="PromptList">
-                负面：
-                <div class="list">
-                    <div class="PromptItem subType-eg">
-                        <div class="displayName name">bad</div>
+                <div class="PromptList">
+                    命令：
+                    <div class="list">
+                        <div class="PromptItem subType-command">
+                            <div class="displayName name">--only</div>
+                        </div>
+                        <div class="PromptItem subType-command">
+                            <div class="displayName name">--v 4</div>
+                            <div class="descName name">模型版本 4</div>
+                        </div>
+                        <div class="PromptItem subType-command">
+                            <div class="displayName name">--style 4a</div>
+                            <div class="descName name">样式 4a</div>
+                        </div>
                     </div>
-                    <div class="PromptItem subType-eg">
-                        <div class="displayName name">bad finger</div>
-                        <div class="descName name">坏手指</div>
-                    </div>
-                    <div class="PromptItem subType-eg">
-                        <div class="displayName name">low</div>
-                        <div class="descName name">低质量</div>
+                </div>
+                <div class="PromptList">
+                    负面：
+                    <div class="list">
+                        <div class="PromptItem subType-eg">
+                            <div class="displayName name">bad</div>
+                        </div>
+                        <div class="PromptItem subType-eg">
+                            <div class="displayName name">bad finger</div>
+                            <div class="descName name">坏手指</div>
+                        </div>
+                        <div class="PromptItem subType-eg">
+                            <div class="displayName name">low</div>
+                            <div class="descName name">低质量</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </template>
-<style lang="scss">
-.PromptEditor {
-    max-width: 1280px;
-    margin: auto;
-    .debug {
-        margin-top: 200px;
-    }
-
-    .operate-tool {
-        margin: 20px;
-        display: flex;
-        .checkbox {
-            margin-left: 32px;
-        }
-
-        .server-select {
-            display: flex;
-            margin-left: auto;
-            place-items: center;
-            font-size: var(--font-size-1);
-            color: #5a5a5a;
-            .iconify {
-                font-size: 1.2em;
-                margin-right: 0.25em;
-            }
-            select {
-                width: 130px;
-            }
-        }
-    }
-}
-</style>
 <script lang="ts">
 import Vue, { PropType } from "vue"
 import { PromptEditorClass } from "./PromptEditorClass"

@@ -1,4 +1,22 @@
 {
+  "art by gustav klimt": {
+    "text": "Art By Gustav Klimt",
+    "lang_zh": "古斯塔夫·克里姆特",
+    "subType": "style",
+    "dir": "风格/艺术家"
+  },
+  "painted by alphonso mucha": {
+    "text": "Painted By Alphonso Mucha",
+    "lang_zh": "穆夏",
+    "subType": "style",
+    "dir": "风格/艺术家"
+  },
+  "painting by wes anderson": {
+    "text": "Painting By Wes Anderson",
+    "lang_zh": "韦斯安德森",
+    "subType": "style",
+    "dir": "风格/艺术家"
+  },
   "\ncubism\n": {
     "text": "\nCubism\n",
     "lang_zh": "\n立体主义\n",
@@ -353,9 +371,9 @@
     "subType": "style",
     "dir": "风格/艺术风格"
   },
-  "van gogh": {
-    "text": "Van Gogh",
-    "lang_zh": "梵高",
+  "painting by van gogh": {
+    "text": "Painting By Van Gogh",
+    "lang_zh": "梵高风格",
     "subType": "style",
     "dir": "风格/艺术家"
   },
@@ -363,49 +381,49 @@
     "text": "high quality",
     "lang_zh": "高质量",
     "subType": "quality",
-    "dir": "质量/质量"
+    "dir": "质量"
   },
   "best quality": {
     "text": "best quality",
     "lang_zh": "最佳质量",
     "subType": "quality",
-    "dir": "质量/质量"
+    "dir": "质量"
   },
   "award winning": {
     "text": "award winning",
     "lang_zh": "屡获殊荣",
     "subType": "quality",
-    "dir": "质量/质量"
+    "dir": "质量"
   },
   "high details": {
     "text": "high details",
     "lang_zh": "高细节",
     "subType": "quality",
-    "dir": "质量/质量"
+    "dir": "质量"
   },
   "super detail": {
     "text": "super detail",
     "lang_zh": "超细节",
     "subType": "quality",
-    "dir": "质量/质量"
+    "dir": "质量"
   },
   "textured skin": {
     "text": "textured skin",
     "lang_zh": "质感皮肤",
     "subType": "quality",
-    "dir": "质量/质量"
+    "dir": "质量"
   },
   "ccurate": {
     "text": "ccurate",
     "lang_zh": "准确",
     "subType": "quality",
-    "dir": "质量/质量"
+    "dir": "质量"
   },
   "anatomically correct": {
     "text": "anatomically correct",
     "lang_zh": "解剖学正确",
     "subType": "quality",
-    "dir": "质量/质量"
+    "dir": "质量"
   },
   "1080p": {
     "text": "1080P",

@@ -1,7 +1,7 @@
 <!-- Created on 2023/03/20 - 21:44 -->
 <template>
     <div
-        class="PromptItem dnd-item"
+        class="PromptItem dnd-item control"
         :class="[
             `type-${item.data.word.type}`,
             `subType-${item.data.word.subType}`,
@@ -12,8 +12,8 @@
         @mousedown="onMousedown"
         v-tooltip="{ content: item.data.word.desc, delay: 500 }"
     >
-        <div class="content">
-            <div class="displayName name">
+        <div class="content tags has-addons are-medium">
+            <div class="displayName name tag is-primary">
                 <span
                     v-if="item.state.isEdit == 'text'"
                     ref="input"
@@ -26,7 +26,7 @@
                 <span v-else>{{ displayName }}</span>
                 <div class="lv" v-if="displayLv">{{ displayLv }}</div>
             </div>
-            <div class="langName name" v-if="langName || item.state.isEdit == 'lang'">
+            <div class="langName name tag is-dark" v-if="langName || item.state.isEdit == 'lang'">
                 <span
                     v-if="item.state.isEdit == 'lang'"
                     ref="inputLang"
@@ -48,7 +48,7 @@
         </div>
     </div>
 </template>
-<style lang="scss">
+<!-- <style lang="scss">
 .PromptItem {
     --h: 28px;
     color: #fff;
@@ -229,7 +229,7 @@
 }
 
 @import "./subType.scss";
-</style>
+</style> -->
 <script lang="ts">
 import Vue, { PropType } from "vue"
 import { PromptItem } from "../../Sub/PromptItem"

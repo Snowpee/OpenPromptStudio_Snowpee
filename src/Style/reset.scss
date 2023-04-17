@@ -1,0 +1,43 @@
+.PromptItem {
+  &.disabled {
+    opacity: .2;
+  }
+  .content {
+    margin: 0;
+    cursor: pointer;
+
+    .tag {
+      margin-bottom: 0;
+    }
+  }
+  &.subType-style .displayName {
+    background-color: hsl(141, 53%, 53%);
+  }
+  &.subType-quality .displayName {
+    background-color: hsl(204, 86%, 53%);
+  }
+  &.subType-command .displayName{
+    background-color: hsl(217, 71%, 53%);
+  }
+}
+.container {
+  margin-bottom: 1.5rem;
+  .columns {
+    margin-top: 0;
+  }
+}
+.imgOption {
+  display: flex;
+  /* vertical-align: middle; */
+  align-items: center;
+  justify-content: flex-end;
+  .checkbox {
+    margin-right: 0.75rem;
+  }
+}
+.workspace {
+  .PromptWork {
+    border-bottom: 2px solid #f5f5f5;
+    margin-bottom: 1.5rem;
+  }
+}

@@ -6,6 +6,6 @@
 <style lang="scss"></style>
 <script>
 import "../Style/Font"
-import "./../Style/var.scss"
+import "./../Style/reset.scss"
 export default {}
 </script>
